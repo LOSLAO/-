@@ -1,0 +1,3 @@
+﻿  test.c
+c:\download\新建文件夹\test  12-10\test  12-10\test.c(101): warning C4013: “system”未定义；假设外部返回 int
+  test  12-10.vcxproj -> C:\download\新建文件夹\test  12-10\Debug\test  12-10.exe
