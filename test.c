@@ -1,61 +1,53 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
-#include "game.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
 
 void menu()
 {
 	printf("*************************\n");
-	printf("******    1.play   ******\n");
-	printf("******    0.exit   ******\n");
+	printf("********  1.play   ******\n");
+	printf("********  0.exit   ******\n");
 	printf("*************************\n");
 }
+
 void game()
 {
-	char board[ROW][COL] = { 0 };
-	char ret = 0;
-	InitBoard(board, ROW, COL);
-	DisplayBoard(board, ROW, COL);
+	int ret = 0;
+	int guess = 0;
+	ret = rand() % 100 + 1;
+
+
 	while (1)
 	{
-		//玩家走
-		PlayerMove(board, ROW, COL);
-		DisplayBoard(board, ROW, COL);
-		ret = IsWin(board, ROW, COL);
-		if(ret != 'C')
-		{   
-			break;
-		}
-	    //电脑走
-		ComputerMove(board, ROW, COL);
-		DisplayBoard(board, ROW, COL);
-		ret = IsWin(board, ROW, COL);
-		if (ret != 'C')
+		printf("请猜数字:>");
+		scanf("%d", &guess);
+		if (guess > ret)
 		{
+			printf("猜大了\n");
+		}
+		else if (guess < ret)
+		{
+			printf("猜小了\n");
+		}
+		else
+		{
+			printf("恭喜你\n");
 			break;
 		}
-	}
-	if (ret == '*')
-	{
-		printf("玩家赢\n");
-	}
-	else if (ret == '#')
-	{
-		printf("电脑赢\n");
-	}
-	else if (ret == 'Q')
-	{
-		printf("平局\n");
+
 	}
 }
 
-void test()
+int main()
 {
 	int input = 0;
 	srand((unsigned int)time(NULL));
 	do
 	{
 		menu();
-		printf("请选择：》");
+		printf("请选择：>");
 		scanf("%d", &input);
 		switch (input)
 		{
@@ -63,17 +55,11 @@ void test()
 			game();
 			break;
 		case 0:
-			printf("退出游戏\n");
 			break;
 		default:
-			printf("选择错误\n");
+			printf("选择错误，请从新输入！\n");
 			break;
 		}
 	} while (input);
-}
-
-int main()
-{
-	test();
-	return;
+	return 0;
 }
